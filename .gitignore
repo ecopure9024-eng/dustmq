@@ -1,0 +1,30 @@
+# Gradle
+.gradle/
+build/
+**/build/
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+captures/
+
+# Firebase
+.firebase/
+functions/lib/
+functions/node_modules/
+google-services.json
+
+# Node / npm
+node_modules/
+npm-debug.log*
+
+# Keystore & 시크릿
+*.keystore
+*.jks
+secrets.properties
+
+# 기타
+.DS_Store
+Thumbs.db
+*.log

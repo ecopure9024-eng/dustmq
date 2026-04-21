@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">리워드앱</string>
+
+    <!-- 공통 -->
+    <string name="loading">로딩 중…</string>
+    <string name="retry">다시 시도</string>
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+
+    <!-- 로그인 -->
+    <string name="login_title">포인트 쌓고\n기프티콘 받자</string>
+    <string name="login_kakao">카카오로 시작하기</string>
+
+    <!-- 홈 -->
+    <string name="home_points">내 포인트</string>
+    <string name="home_today_ads">오늘 시청</string>
+    <string name="home_streak">연속 출석</string>
+    <string name="home_missions">오늘의 미션</string>
+
+    <!-- 광고 -->
+    <string name="ads_title">광고 보기</string>
+    <string name="ads_watch_start">광고 시청 시작</string>
+    <string name="ads_category_all">전체</string>
+    <string name="ads_category_shop">쇼핑</string>
+    <string name="ads_category_game">게임</string>
+    <string name="ads_category_install">앱설치</string>
+    <string name="ads_category_finance">금융</string>
+
+    <!-- 교환 -->
+    <string name="exchange_title">교환하기</string>
+    <string name="exchange_current_points">보유 포인트</string>
+    <string name="exchange_cash_soon">현금 출금 기능은 준비 중입니다</string>
+
+    <!-- 탭 -->
+    <string name="tab_home">홈</string>
+    <string name="tab_ads">광고보기</string>
+    <string name="tab_exchange">교환하기</string>
+    <string name="tab_profile">내 정보</string>
+</resources>

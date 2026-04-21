@@ -1,0 +1,48 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 본인만 자신의 사용자 문서를 읽을 수 있고,
+    // 쓰기는 전부 Cloud Functions(관리자 권한)에서만 가능.
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if false;
+    }
+
+    // 포인트 변동 로그: 본인 로그만 조회 가능, 쓰기는 Functions만.
+    match /pointTransactions/{txId} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    // 광고 시청 로그: 본인 것만 조회, 쓰기 금지.
+    match /adViews/{viewId} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    // 출금(교환) 내역: 본인 것만 조회, 쓰기 금지.
+    match /withdrawals/{wdId} {
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+      allow write: if false;
+    }
+
+    // 광고 인벤토리: 로그인한 사용자 모두 조회 가능, 쓰기 금지.
+    match /adInventory/{adId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    // 기프티콘 목록: 로그인한 사용자 모두 조회 가능, 쓰기 금지.
+    match /gifticons/{itemId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    // Integrity nonce: 본인만 확인 가능하지만 실제로는 서버만 다룸.
+    match /integrityNonces/{nonce} {
+      allow read, write: if false;
+    }
+  }
+}
