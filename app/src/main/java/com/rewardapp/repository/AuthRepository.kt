@@ -1,7 +1,9 @@
 package com.rewardapp.repository
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
@@ -19,7 +21,18 @@ class AuthRepository @Inject constructor(
         val kakaoAccessToken = obtainKakaoAccessToken(context)
         val firebaseCustomToken = exchangeKakaoForFirebaseToken(kakaoAccessToken)
         auth.signInWithCustomToken(firebaseCustomToken).await()
+        if (auth.currentUser != null) {
+            runCatching { registerFcmToken() }
+                .onFailure { Log.w("AuthRepo", "FCM 토큰 저장 실패", it) }
+        }
         return auth.currentUser != null
+    }
+
+    private suspend fun registerFcmToken() {
+        val token = FirebaseMessaging.getInstance().token.await()
+        functions.getHttpsCallable("saveFcmToken")
+            .call(mapOf("token" to token))
+            .await()
     }
 
     private suspend fun obtainKakaoAccessToken(context: android.content.Context): String =

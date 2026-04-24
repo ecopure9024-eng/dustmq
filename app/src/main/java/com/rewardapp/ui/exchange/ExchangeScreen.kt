@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
@@ -93,8 +94,8 @@ private fun GifticonRow(item: GifticonItem, userPoints: Long, onExchange: () -> 
                 contentDescription = item.name,
                 modifier = Modifier.height(60.dp),
             )
-            Spacer(Modifier.height(0.dp))
-            Column(modifier = Modifier.weight(1f).padding(start = 12.dp)) {
+            Spacer(Modifier.width(12.dp))
+            Column(modifier = Modifier.weight(1f)) {
                 Text(item.vendor, fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 Text(item.name, fontWeight = FontWeight.SemiBold)
                 Text("${item.pointsRequired}P", color = MaterialTheme.colorScheme.primary, fontSize = 13.sp)

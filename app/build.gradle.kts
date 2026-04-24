@@ -21,7 +21,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
 
-        val kakaoKey = (project.findProperty("KAKAO_NATIVE_APP_KEY") as String?) ?: ""
+        val kakaoKey = (project.findProperty("KAKAO_NATIVE_APP_KEY") as String?).orEmpty()
+        require(kakaoKey.isNotBlank()) {
+            "KAKAO_NATIVE_APP_KEY가 설정되지 않았습니다. " +
+                "gradle.properties 또는 ~/.gradle/gradle.properties에 카카오 네이티브 앱 키를 추가하세요."
+        }
         manifestPlaceholders["KAKAO_NATIVE_APP_KEY"] = kakaoKey
         buildConfigField("String", "KAKAO_NATIVE_APP_KEY", "\"$kakaoKey\"")
 
