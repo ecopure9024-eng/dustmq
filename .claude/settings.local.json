@@ -3,7 +3,13 @@
     "allow": [
       "Skill(update-config)",
       "Skill(update-config:*)",
-      "Read(//c/Users/yunsung/Documents/projects/RewardBox/app/src/**)"
+      "Read(//c/Users/yunsung/Documents/projects/RewardBox/app/src/**)",
+      "Bash(git commit -m ' *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'fix: AdMob manifest merger 충돌 해결 \\(AD_SERVICES_CONFIG tools:replace\\) *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\yunsung\\Desktop\\dustmq\\app"
     ]
   }
 }
