@@ -2,6 +2,7 @@ package com.rewardapp.repository
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.rewardapp.data.model.PointTransaction
 import com.rewardapp.data.model.UserDoc
 import kotlinx.coroutines.channels.awaitClose
@@ -31,7 +32,7 @@ class UserRepository @Inject constructor(
         val userId = uid ?: return emptyList()
         val snap = db.collection("pointTransactions")
             .whereEqualTo("userId", userId)
-            .orderBy("createdAt")
+            .orderBy("createdAt", Query.Direction.DESCENDING)
             .limit(limit)
             .get()
             .await()

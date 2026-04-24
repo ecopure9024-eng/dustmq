@@ -51,7 +51,7 @@ class AdManager @Inject constructor(
                 }
 
                 override fun onAdFailedToLoad(error: LoadAdError) {
-                    onError(error.message ?: "광고 로드 실패")
+                    onError(error.message ?: "광고 로드 실패 (code=${error.code})")
                 }
             },
         )
