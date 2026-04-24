@@ -26,8 +26,17 @@ class AuthViewModel @Inject constructor(
     private val _loading = MutableStateFlow(false)
     val loading: StateFlow<Boolean> = _loading
 
+    private val authStateListener = FirebaseAuth.AuthStateListener {
+        _isLoggedIn.value = it.currentUser != null
+    }
+
     init {
-        auth.addAuthStateListener { _isLoggedIn.value = it.currentUser != null }
+        auth.addAuthStateListener(authStateListener)
+    }
+
+    override fun onCleared() {
+        auth.removeAuthStateListener(authStateListener)
+        super.onCleared()
     }
 
     fun loginKakao(context: Context) {

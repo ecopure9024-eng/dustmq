@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
             }.onSuccess { result ->
                 @Suppress("UNCHECKED_CAST")
                 val data = result.data as? Map<String, Any?>
-                val reward = data?.get("reward")
+                val reward = (data?.get("reward") as? Number)?.toLong() ?: 0L
                 _toast.value = "출석 완료! +${reward}P"
             }.onFailure {
                 _toast.value = it.message ?: "출석 실패"
